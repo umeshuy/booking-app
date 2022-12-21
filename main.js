@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function showListofRegisteredUser(user){
     const parentNode = document.getElementById('listOfitems');
     const createNewUserHtml = `<li id='${user._id}'>${user.name} - ${user.email} - ${user.phonenumber}
-                                    <button onclick=deleteUser('${user._id}')>Delete</button><button onclick=edituser('${user._id}')>Edit</button>
+                                    <button onclick=deleteUser('${user._id}')>Delete User</button><button onclick=edituserDetails('${user.email}','${user.name}','${user.phonenumber}','${user._id}')>Edit User</button>
                                 </li>
                                 `
     console.log(createNewUserHtml)
@@ -68,14 +68,22 @@ function removeItemFromScreen(userid){
     parentNode.removeChild(elem);
 }
 
-function edituser(userid){
-    axios.get(`https://crudcrud.com/api/4f9826ee7acb42bab3794ad23ddf0959/appointmentData/${userid}`)
-.then((res)=>{
-    document.getElementById('name').value=res.user.name;
-    document.getElementById('email').value=res.user.email;
-    document.getElementById('id').value=res.user._id;
-})
-.catch((err)=>{
-    console.log(err)
-})
+// function edituser(userid){
+//     axios.get(`https://crudcrud.com/api/4f9826ee7acb42bab3794ad23ddf0959/appointmentData/${userid}`)
+// .then((res)=>{
+//     document.getElementById('name').value=res.user.name;
+//     document.getElementById('email').value=res.user.email;
+//     document.getElementById('id').value=res.user._id;
+// })
+// .catch((err)=>{
+//     console.log(err)
+// })
+// }
+
+//edit user
+function edituserDetails(emailId,name,phonenumber,userid){
+    document.getElementById('email').value = emailId;
+    document.getElementById('username').value = name;
+    document.getElementById('phonenumber').value = phonenumber;
+    deleteUser(userid)
 }
