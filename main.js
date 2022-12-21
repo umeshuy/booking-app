@@ -22,10 +22,21 @@ function saveToLocalStorage(event) {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    Object.keys(localStorage).forEach(key => {
-        const user = JSON.parse(localStorage.getItem(key))
-        showListofRegisteredUser(user)
-    })
+    axios.get("https://crudcrud.com/api/94b17470dcf64187816372b9dafc6e3d/appointmentData")
+   .then((res)=>{
+    for(var i=0; i<res.data.length; i++)
+    {
+        showListofRegisteredUser(res.data[i])
+    }
+   // console.log(res)
+   })
+   .catch((err)=>{
+    console.log(err)
+   })
+    // Object.keys(localStorage).forEach(key => {
+    //     const user = JSON.parse(localStorage.getItem(key))
+    //     showListofRegisteredUser(user)
+    // })
 })
 
 function showListofRegisteredUser(user){
