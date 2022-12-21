@@ -41,8 +41,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 function showListofRegisteredUser(user){
     const parentNode = document.getElementById('listOfitems');
-    const createNewUserHtml = `<li id='${user.email}'>${user.name} - ${user.email} - ${user.phonenumber}
-                                    <button onclick=deleteUser('${user.email}')>Delete</button>
+    const createNewUserHtml = `<li id='${user._id}'>${user.name} - ${user.email} - ${user.phonenumber}
+                                    <button onclick=deleteUser('${user._id}')>Delete</button>
                                 </li>
                                 `
     console.log(createNewUserHtml)
@@ -50,17 +50,20 @@ function showListofRegisteredUser(user){
     console.log(parentNode.innerHTML)
 }
 
-function deleteUser(id) {
-    axios.delete(`https://crudcrud.com/api/94b17470dcf64187816372b9dafc6e3d/appointmentData/${id}`)
-    .then(()=>{
-        removeItemFromScreen(id);
+function deleteUser(userid) {
+    axios.delete(`https://crudcrud.com/api/94b17470dcf64187816372b9dafc6e3d/appointmentData/${userid}`)
+    .then((res)=>{
+        removeItemFromScreen(userid);
+    })
+    .catch((err)=>{
+        console.log(err)
     })
    // localStorage.removeItem(email)
    // removeItemFromScreen(email)
 }
 
-function removeItemFromScreen(email){
+function removeItemFromScreen(userid){
     const parentNode = document.getElementById('listOfitems');
-    const elem = document.getElementById(email)
+    const elem = document.getElementById(userid)
     parentNode.removeChild(elem);
 }
