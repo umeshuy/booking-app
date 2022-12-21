@@ -3,16 +3,22 @@ function saveToLocalStorage(event) {
     const name = event.target.username.value;
     const email = event.target.emailId.value;
     const phonenumber = event.target.phonenumber.value;
-    // localStorage.setItem('name', name);
-    // localStorage.setItem('email', email);
-    // localStorage.setItem('phonenumber', phonenumber)
     const obj = {
         name,
         email,
         phonenumber
     }
-    localStorage.setItem(obj.email, JSON.stringify(obj))
-    showListofRegisteredUser(obj)
+   axios.post("https://crudcrud.com/api/94b17470dcf64187816372b9dafc6e3d/appointmentData",obj)
+   .then((res)=>{
+    showListofRegisteredUser(res.data)
+   // console.log(res)
+   })
+   .catch((err)=>{
+    console.log(err)
+   })
+   
+   // localStorage.setItem(obj.email, JSON.stringify(obj))
+   // showListofRegisteredUser(obj)
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
