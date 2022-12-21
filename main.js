@@ -50,9 +50,13 @@ function showListofRegisteredUser(user){
     console.log(parentNode.innerHTML)
 }
 
-function deleteUser(email) {
-    localStorage.removeItem(email)
-    removeItemFromScreen(email)
+function deleteUser(id) {
+    axios.delete(`https://crudcrud.com/api/94b17470dcf64187816372b9dafc6e3d/appointmentData/${id}`)
+    .then(()=>{
+        removeItemFromScreen(id);
+    })
+   // localStorage.removeItem(email)
+   // removeItemFromScreen(email)
 }
 
 function removeItemFromScreen(email){
