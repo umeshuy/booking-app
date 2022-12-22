@@ -2,15 +2,15 @@
     <body>
         <form onsubmit="saveToLocalStorage(event)">
             <label> Name</label>
-            <input type="text" name="username"  required/>
+            <input type="text" name="username" id="username" required/>
             <label> EmailId</label>
-            <input type="email" name="emailId"  required/>
+            <input type="email" name="emailId" id="email" required/>
             <label> Phone Number</label>
-            <input type="tel" name="phonenumber" />
+            <input type="tel" name="phonenumber" id="phonenumber" />
             <button> Submit </button>
         </form>
         <ul id='listOfitems'></ul>
         <script src="main.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     </body>
 </html>
